@@ -1,0 +1,98 @@
+#%RAML 1.0
+title: MyFirstAPISpecification
+version: 1.0
+/users:
+  /authors:
+    description: This is used to get authors details
+    get:
+      responses: 
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                "authorID":1,
+                "authorName":"Robert",
+                "DOB":"21/04/1986",
+                "Age":30
+                }  
+    post:
+      body: 
+        application/json:
+          example: |
+            {
+            "authorID":1,
+            "authorName":"Stephen",
+            "DOB":"21/04/1986",
+            "Age":30
+             } 
+      responses: 
+        201:
+          body: 
+            application/json:
+              example: |
+                {
+                "message":"Author updated {but not really"
+                }
+    /{authorID}:
+      get:
+        responses: 
+          200:
+            body: 
+              application/json:
+                example: |
+                  {
+                  "TotalBooks":30,
+                  "Subject":"Maths,Science",
+                  "Publication":"Nirvana"
+                  }
+  /books:
+    get: 
+    post:
+    put:
+    /{bookTitle}:
+      get:
+        queryParameters: 
+          author:
+            displayName: Author
+            description: The Author's Full Name
+            type: string
+            required: false
+            example: Michael Lynn
+          publicationYear:
+            displayName: Publication Year
+            description: Year of Publication
+            type: number
+            required: false
+            example: 2010
+          rating:
+            displayName: Rating
+            description: Average Rating of book submitted by users (1-5)
+            type: number
+            required: false
+            example: 3.5
+          isbn:
+            displayName: ISBN
+            description: ISBN Number of Book
+            type: string
+            maxLength: 10
+            example: "1234567"
+            required: false
+        responses: 
+          200:
+            body: 
+              application/json:
+                example: |
+                  {
+                  "id": "123",
+                  "title": "API Design",
+                  "description": null,
+                  "datetime": 1341533193,
+                  "author": "Mary"
+                  }
+      put:
+      delete:
+      /author:
+        get:
+      /publisher:
+        get:
